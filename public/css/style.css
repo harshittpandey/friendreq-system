@@ -85,3 +85,12 @@ body {
 footer{
   margin-top:40px;
 }
+
+
+.profilestyle {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  border:1px solid #ccc;
+  object-fit: contain;
+}

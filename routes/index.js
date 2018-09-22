@@ -1,9 +1,30 @@
 var express = require('express');
 var router = express.Router();
+var formidable = require('formidable');
+var User = require('../models/user');
 
 // Get Homepage
 router.get('/', ensureAuthenticated, function(req, res){
 	res.render('index');
+});
+
+router.post('/', function(req, res) {
+	var form =new formidable.IncomingForm();
+	form.parse(req);
+	form.on('fileBegin', function(name, file){
+		file.path = __dirname  + '/../public/upload' + file.name;
+	});
+	form.on('file', function(name, file) {
+		User.update({
+			'userImage': file.name
+		}, function(err, result){
+			if(err) {
+				console.log(err);
+			}
+		});
+	});
+	req.flash('success_msg', 'Your profile picture has been uploaded');
+	res.redirect('/');
 });
 
 function ensureAuthenticated(req, res, next){

@@ -19,6 +19,7 @@
     "express-messages": "*",
     "express-session": "*",
     "express-validator": "*",
+    "formidable": "^1.2.1",
     "mongodb": "*",
     "mongoose": "*",
     "passport": "*",

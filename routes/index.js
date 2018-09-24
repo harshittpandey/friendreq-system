@@ -8,6 +8,30 @@ router.get('/', ensureAuthenticated, function(req, res){
 	res.render('index');
 });
 
+router.get('/search', ensureAuthenticated, function(req, res){
+	User.find({username: {$ne: req.user.username}}, function(err, result){
+		if (err) throw err;
+		res.render('search',{
+			result: result
+		});
+	});
+});
+
+router.post('/search', ensureAuthenticated, function(req, res) {
+	 var searchfriend = req.body.searchfriend;
+	 var mssg= '';
+		if (searchfriend = req.user.username) {
+			searchfriend= null;
+		}
+		 User.find({username: searchfriend}, function(err, result) {
+			 if (err) throw err;
+				 res.render('search', {
+				 result: result,
+				 mssg : mssg
+			 });
+	 });
+});
+
 router.post('/', function(req, res) {
 	var form =new formidable.IncomingForm();
 	form.parse(req);

@@ -24,6 +24,7 @@
     "mongoose": "*",
     "passport": "*",
     "passport-http": "*",
-    "passport-local": "*"
+    "passport-local": "*",
+    "socket.io": "^2.1.1"
   }
 }

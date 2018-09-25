@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var http = require('http');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var exphbs = require('express-handlebars');
@@ -10,6 +11,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
+var socketIO = require('socket.io');
 
 mongoose.connect('mongodb://localhost/blogtest');
 var db = mongoose.connection;
@@ -19,7 +21,10 @@ var users = require('./routes/users');
 
 // Init App
 var app = express();
+const server = http.createServer(app);
+const io= socketIO(server);
 
+require('./socket/friend')(io);
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({defaultLayout:'layout'}));

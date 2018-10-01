@@ -14,11 +14,10 @@
 		<img class="usercard-image" src="upload/{{this.userImage}}">
 		<h4 class="usercard-name">{{this.name}}</h4>
 		<p class="usercard-username">@({{this.username}})</p>
-		<button class="usercard-button accept">
-			Accept
-		</button>
-		<button class="usercard-button reject">
-			Reject
-		</button>
+		<form action="" method="get" id="add_friend">
+            <input type="hidden" name="receiverName" id="receiverName" value="{{this.username}}">
+            <input type="hidden" name="sender-name" id="sender-name" value="{{user.username}}">
+            <button type="submit" id="friend-add" class="btn add accept"><i class="fa fa-user"></i> Add Friend</button>
+        </form>
 	</div>
 	{{/each}}

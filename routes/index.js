@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var formidable = require('formidable');
 var User = require('../models/user');
+var path = require('path');
 
 // Get Homepage
 router.get('/', ensureAuthenticated, function(req, res){
@@ -20,7 +21,7 @@ router.get('/search', ensureAuthenticated, function(req, res){
 router.post('/search', ensureAuthenticated, function(req, res) {
 	 var searchfriend = req.body.searchfriend;
 	 var mssg= '';
-		if (searchfriend = req.user.username) {
+		if (searchfriend == req.user.username) {
 			searchfriend= null;
 		}
 		 User.find({username: searchfriend}, function(err, result) {
@@ -35,13 +36,21 @@ router.post('/search', ensureAuthenticated, function(req, res) {
 router.post('/', function(req, res) {
 	var form =new formidable.IncomingForm();
 	form.parse(req);
+	let reqPath= path.join(__dirname, '../');
+	let newfilename;
 	form.on('fileBegin', function(name, file){
-		file.path = __dirname  + '/../public/upload' + file.name;
+		file.path = reqPath+ 'public/upload/'+ req.user.username + file.name;
+		newfilename= req.user.username+ file.name;
 	});
+
 	form.on('file', function(name, file) {
-		User.update({
-			'userImage': file.name
-		}, function(err, result){
+		User.findOneAndUpdate({
+			username: req.user.username
+		},
+		{
+			'userImage': newfilename
+		},
+		function(err, result){
 			if(err) {
 				console.log(err);
 			}

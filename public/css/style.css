@@ -125,7 +125,7 @@ footer{
 }
 .usercard-button {
   width: 100px;
-  padding: 6px;
+  padding: 5px;
   margin:5px;
   margin-left: 15%;
   border-radius: 5px;
@@ -134,6 +134,8 @@ footer{
 }
 .accept {
   background-color: green;
+  color: white;
+  margin-left: 15%
 }
 .reject {
   background-color: red;

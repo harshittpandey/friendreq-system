@@ -1,6 +1,6 @@
  <h2 class="page-header">{{user.name}} <span style="color: blue">(@{{user.username}})</span></h2>
 <div style="margin-left: 30%">
- <img class="profilestyle" src="upload/{{user.userImage}}" alt="{{user.userImage}}" >
+ <img class="profilestyle" src="/upload/{{user.userImage}}" alt="{{user.userImage}}" >
  <form action="/" enctype="multipart/form-data" method="post" style="margin-top: 10px">
  <label class="custombutton" id="custombutton" style="width:200px;border: 1px solid #ccc;display: inline-block; padding: 6px 12px;cursor: pointer;">
  <input type="file" name="upload" accept="image/*" style=" display: none;" onchange="document.getElementById('custombutton').style.border = '2px solid lightgreen'">

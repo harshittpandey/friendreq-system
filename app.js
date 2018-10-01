@@ -1,6 +1,6 @@
 var express = require('express');
 var path = require('path');
-var http = require('http');// adding this here
+var http = require('http');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var exphbs = require('express-handlebars');
@@ -23,6 +23,8 @@ var users = require('./routes/users');
 var app = express();
 const server = http.createServer(app);
 const io= socketIO(server);
+
+
 
 require('./socket/friend')(io);
 // View Engine
@@ -85,8 +87,12 @@ app.use('/', routes);
 app.use('/users', users);
 
 // Set Port
-app.set('port', (process.env.PORT || 3000));
+ app.set('port', (process.env.PORT || 3000));
 
-app.listen(app.get('port'), function(){
-	console.log('Server started on port '+app.get('port'));
-});
+// app.listen(app.get('port'), function(){
+// 	console.log('Server started on port '+app.get('port'));
+// });
+
+server.listen(app.get('port'),function(){
+      console.log('listening on port 3000');
+    });

@@ -5,6 +5,7 @@
 	<link rel="stylesheet" href="/css/bootstrap.css" />
 	<link rel="stylesheet" href="/css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
 </head>
 <body>
 	<div class="container">
@@ -15,21 +16,38 @@
               <input type="hidden"  id="currentuser" value="{{user.username}}">
               <li role="presentation"><a href="/search">Search <i class="fa fa-search"></i></a></li>
               <li>
-                <div class="dropdown">
+                <div class="dropdown" style="">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-user-plus"></i>
                 <span class="caret"></span></button>
-                  <ul class="dropdown-menu" style="width: 300px">
+                  <ul class="dropdown-menu" style="width: 300px; height: 400px; overflow-y: scroll;">
+                    {{#if user.request}}
+                    {{#each newfriend}}
                     <li style="border-bottom: 1px solid lightgray">
                       <a href="#">
                           <div>
-                            <h4>Harshit Pandey</h4>
+                            <h4>{{this.username}}</h4>
                           </div>
                           <div>
-                              <button class="btn btn-primary" style="width: 50%">Accept</button>
-                              <button class="btn btn-primary" style="width: 50%">Reject</button>
+                              
+                              <div style="width: 50%; display: inline;">
+                                <input type="hidden" name="senderId" id="senderId" value="{{this.userId}}">
+
+                                <input type="hidden" name="senderName" id="senderName" value="{{this.username}}">
+                                <button type="submit" id="accept_friend" class="btn btn-primary" style="width: 8em">Accept</button>
+                              </div>
+                              <div style="width: 50%;  display: inline;">
+                                 <input type="hidden" name="user_Id" id="user_Id" value="{{this.userId}}">
+                                <button type="submit" id="cancel_friend" class="btn btn-primary" style="width: 8em">Cancel</button>
+                              </div>
                           </div>    
                       </a>
                     </li>
+                    {{/each}}
+                    {{else}}
+                    <div>
+                      No requests
+                    </div>
+                    {{/if}}
                   </ul>
                 </div>
               </li>
@@ -74,4 +92,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/socket.io/socket.io.js"></script>
   <script type="text/javascript" src="/js/sendrequest.js"></script>
+  <script type="text/javascript">
+  
+  </script>
 </html>

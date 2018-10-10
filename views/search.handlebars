@@ -5,19 +5,18 @@
 	<input type="submit" value="search">
 </form>
 <hr>
-	{{#if mssg}}
-		<div class="alert alert-danger">{{mssg}}</div>
-	{{/if}}
-
+	
 	{{#each result}}
 	<div class="usercard col-lg-3">
 		<img class="usercard-image" src="upload/{{this.userImage}}">
 		<h4 class="usercard-name">{{this.name}}</h4>
 		<p class="usercard-username">@({{this.username}})</p>
-		<form action="" method="get" id="add_friend">
-            <input type="hidden" name="receiverName" id="receiverName" value="{{this.username}}">
-            <input type="hidden" name="sender-name" id="sender-name" value="{{user.username}}">
-            <button type="submit" id="friend-add" class="btn add accept"><i class="fa fa-user"></i> Add Friend</button>
+		<form action="" method="get" class="add_friend">
+            <input type="hidden" name="receiverName" class="receiverName" value="{{this.username}}">
+            <input type="hidden" name="sender-name" class="sender-name" value="{{user.username}}">
+            <button type="submit" id="" onclick="addFriend('{{this.username}}')" class="btn add accept friend-add"><i class="fa fa-user"></i> Add Friend</button>
         </form>
 	</div>
 	{{/each}}
+
+	

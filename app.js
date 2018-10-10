@@ -29,8 +29,19 @@ const io= socketIO(server);
 require('./socket/friend')(io);
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
-app.engine('handlebars', exphbs({defaultLayout:'layout'}));
+app.engine('handlebars', exphbs({
+  helpers: {
+    ifIn: function(elem, list, options) {
+      if(list.indexOf(elem) > -1) {
+        return options.fn(this);
+      }
+      return options.inverse(this);
+    }
+  },
+  defaultLayout:'layout'
+}));
 app.set('view engine', 'handlebars');
+
 
 // BodyParser Middleware
 app.use(bodyParser.json());

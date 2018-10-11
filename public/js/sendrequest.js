@@ -11,12 +11,7 @@ function addFriend(name) {
           receiverName: name        
         },
         success: function() {
-          socket.emit('friendRequest', {
-            receiver: name,
-            sender: sender
-          }, function() {
-             // console.log('request sent'+ name);
-          })
+           
         }
       })
 }
@@ -25,7 +20,6 @@ $(document).ready(function(){
 		$('.friend-add').on('click', function(e){
 			e.preventDefault();
 		});
-
 		$('#accept_friend').on('click', function(){
 			var senderId= $('#senderId').val();
 			var senderName= $('#senderName').val();
@@ -43,7 +37,6 @@ $(document).ready(function(){
 			});
 		$('#reload').load(location.href + ' #reload');		
 		});
-
 		$('#cancel_friend').on('click', function(){
 			var user_Id= $('#user_Id').val();
 			// console.log(user_Id);	

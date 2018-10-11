@@ -112,8 +112,7 @@ router.post('/search', ensureAuthenticated, function(req, res) {
 						});
 					}
 				},
-				// this function is updated for the sender of the friend request when it is accepted by the receiver
-				
+				// this function is updated for the sender of the friend request when it is accepted by the receiver	
 				function(callback) {
 					if (req.body.senderId) {
 						User.update({
@@ -132,7 +131,6 @@ router.post('/search', ensureAuthenticated, function(req, res) {
 						});
 					}
 				},
-
 				function(callback) {
 					if (req.body.user_Id) {
 						User.update({
@@ -148,7 +146,6 @@ router.post('/search', ensureAuthenticated, function(req, res) {
 						});
 					}
 				},
-
 				function(callback) {
 					if (req.body.user_Id) {
 						User.update({
@@ -162,12 +159,10 @@ router.post('/search', ensureAuthenticated, function(req, res) {
 							callback(err, count);
 						});
 					}
-				} 
-				
+				} 		
 			],(err, results)=> {
 				res.redirect('/search');
 			});
-
 });
 
 router.post('/', function(req, res) {

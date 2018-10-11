@@ -10,7 +10,7 @@
 <body>
 	<div class="container">
       <div class="header clearfix">
-        <nav>
+        <nav id="reload">
           <ul class="nav nav-pills pull-right">
             {{#if user}}
               <input type="hidden"  id="currentuser" value="{{user.username}}">
@@ -31,7 +31,6 @@
                               
                               <div style="width: 50%; display: inline;">
                                 <input type="hidden" name="senderId" id="senderId" value="{{this.userId}}">
-
                                 <input type="hidden" name="senderName" id="senderName" value="{{this.username}}">
                                 <button type="submit" id="accept_friend" class="btn btn-primary" style="width: 8em">Accept</button>
                               </div>
@@ -45,7 +44,7 @@
                     {{/each}}
                     {{else}}
                     <div>
-                      No requests
+                      <h4 style="text-align:center">No requests</h4>
                     </div>
                     {{/if}}
                   </ul>
